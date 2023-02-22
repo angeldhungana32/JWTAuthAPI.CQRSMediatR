@@ -1,4 +1,4 @@
-﻿namespace JWTAuthAPI.Core.Configurations
+﻿namespace JWTAuthAPI.Infrastructure.Configurations
 {
     public class AdminConfiguration
     {

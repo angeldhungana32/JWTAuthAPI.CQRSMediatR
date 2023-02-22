@@ -1,11 +1,11 @@
-﻿using JWTAuthAPI.Core.Configurations;
-using JWTAuthAPI.Core.Entities.Identity;
+﻿using JWTAuthAPI.Core.Entities.Identity;
 using JWTAuthAPI.Core.Constants;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using JWTAuthAPI.Infrastructure.Configurations;
 
 namespace JWTAuthAPI.Infrastructure.Data
 {

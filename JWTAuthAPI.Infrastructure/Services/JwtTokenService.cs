@@ -1,6 +1,6 @@
-﻿using JWTAuthAPI.Core.Configurations;
-using JWTAuthAPI.Core.Entities.Identity;
+﻿using JWTAuthAPI.Core.Entities.Identity;
 using JWTAuthAPI.Core.Interfaces;
+using JWTAuthAPI.Infrastructure.Configurations;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

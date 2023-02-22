@@ -1,4 +1,4 @@
-﻿namespace JWTAuthAPI.Core.Configurations
+﻿namespace JWTAuthAPI.API.Configurations
 {
     public class SwaggerConfiguration
     {

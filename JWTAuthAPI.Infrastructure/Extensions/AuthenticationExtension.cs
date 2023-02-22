@@ -1,5 +1,5 @@
-﻿using JWTAuthAPI.Core.Configurations;
-using JWTAuthAPI.Core.Entities.Identity;
+﻿using JWTAuthAPI.Core.Entities.Identity;
+using JWTAuthAPI.Infrastructure.Configurations;
 using JWTAuthAPI.Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;

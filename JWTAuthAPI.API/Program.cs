@@ -1,4 +1,5 @@
 using JWTAuthAPI.API;
+using JWTAuthAPI.API.Extensions;
 using JWTAuthAPI.API.Middlewares;
 using JWTAuthAPI.Application;
 using JWTAuthAPI.Infrastructure;
@@ -10,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole().AddDebug();
 
-builder.Services.AddAPIServices();
+builder.Services.AddAPIServices(builder.Configuration);
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 

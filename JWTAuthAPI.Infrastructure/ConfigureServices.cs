@@ -1,6 +1,4 @@
-﻿using JWTAuthAPI.API.Extensions;
-using JWTAuthAPI.Core.Configurations;
-using JWTAuthAPI.Core.Entities.Identity;
+﻿using JWTAuthAPI.Core.Entities.Identity;
 using JWTAuthAPI.Core.Constants;
 using JWTAuthAPI.Core.Interfaces;
 using JWTAuthAPI.Core.Services;
@@ -13,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using JWTAuthAPI.Infrastructure.Interceptors;
+using JWTAuthAPI.Infrastructure.Configurations;
 
 namespace JWTAuthAPI.Infrastructure
 {
@@ -55,7 +54,6 @@ namespace JWTAuthAPI.Infrastructure
             services.AddTransient<ApplicationDbInitializer>();
             services.AddTransient<IRepositoryActivator, RepositoryActivator>();
 
-            services.AddSwaggerCustom(configuration);
             services.AddJwtAuthentication(configuration);
 
             services.AddTransient<IIdentityService, IdentityService>();
