@@ -1,6 +1,6 @@
 ﻿using JWTAuthAPI.Core.Configurations;
 using JWTAuthAPI.Core.Entities.Identity;
-using JWTAuthAPI.Core.Helpers;
+using JWTAuthAPI.Core.Constants;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

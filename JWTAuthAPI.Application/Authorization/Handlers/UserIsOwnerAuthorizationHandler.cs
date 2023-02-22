@@ -15,8 +15,8 @@ namespace JWTAuthAPI.Application.Authorization.Handlers
         }
 
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
-                                   UserIsOwnerRequirement requirement,
-                                   ApplicationUser resource)
+            UserIsOwnerRequirement requirement,
+            ApplicationUser resource)
         {
             if (context.User == null || resource == null) { return Task.CompletedTask; }
 

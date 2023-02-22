@@ -32,7 +32,7 @@ namespace JWTAuthAPI.API.Middlewares
             int statusCode;
             switch (ex)
             {
-                case ForbiddenException:
+                case ForbiddenAccessException:
                     statusCode = StatusCodes.Status403Forbidden;
                     break;
                 case NotFoundException:
@@ -43,6 +43,9 @@ namespace JWTAuthAPI.API.Middlewares
                 case ResourceModificationException:
                     statusCode = StatusCodes.Status400BadRequest;
                     message = ex.Message;
+                    break;
+                case UnauthenticatedAccessException:
+                    statusCode = StatusCodes.Status401Unauthorized;
                     break;
                 default:
                     statusCode = StatusCodes.Status500InternalServerError;

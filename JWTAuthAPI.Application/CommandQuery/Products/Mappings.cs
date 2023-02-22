@@ -1,6 +1,6 @@
 ﻿using JWTAuthAPI.Application.CommandQuery.Products.Commands;
 using JWTAuthAPI.Core.Entities;
-using JWTAuthAPI.Core.Helpers;
+using JWTAuthAPI.Application.Helpers;
 
 namespace JWTAuthAPI.Application.CommandQuery.Products
 {
@@ -26,9 +26,7 @@ namespace JWTAuthAPI.Application.CommandQuery.Products
             List<ProductResponse> productsResponse = new();
 
             if (products != null)
-            {
                 productsResponse.AddRange(products.Select(product => product.ToResponseDTO()));
-            }
 
             return productsResponse;
         }
@@ -58,7 +56,6 @@ namespace JWTAuthAPI.Application.CommandQuery.Products
             }
 
             return product;
-
         }
 
     }

@@ -3,7 +3,7 @@ using JWTAuthAPI.Application.CommandQuery.Authentication.Commands;
 using JWTAuthAPI.Application.CommandQuery.Users;
 using JWTAuthAPI.Application.CommandQuery.Users.Commands;
 using JWTAuthAPI.Application.CommandQuery.Users.Queries;
-using JWTAuthAPI.Core.Helpers;
+using JWTAuthAPI.Core.Constants;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

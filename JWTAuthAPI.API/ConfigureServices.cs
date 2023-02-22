@@ -9,7 +9,6 @@ namespace JWTAuthAPI.API
     {
         public static IServiceCollection AddAPIServices(this IServiceCollection services)
         {
-
             services.AddControllers().AddJsonOptions(options => 
                 options.JsonSerializerOptions
                    .Converters

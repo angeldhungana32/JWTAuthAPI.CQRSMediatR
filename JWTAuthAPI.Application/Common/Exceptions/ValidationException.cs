@@ -8,7 +8,6 @@ namespace JWTAuthAPI.Application.Common.Exceptions
         public ValidationException() : base() { }
         public ValidationException(IEnumerable<ValidationFailure> failures) : base(ValidationExceptionToString(failures)){ }
 
-
         private static string ValidationExceptionToString(IEnumerable<ValidationFailure> failures)
         {
             IDictionary<string, string[]> Errors = failures
@@ -17,6 +16,5 @@ namespace JWTAuthAPI.Application.Common.Exceptions
 
             return JsonSerializer.Serialize(Errors);
         }
-
     }
 }

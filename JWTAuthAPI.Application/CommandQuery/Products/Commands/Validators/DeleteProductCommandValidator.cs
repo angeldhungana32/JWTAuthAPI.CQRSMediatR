@@ -9,7 +9,6 @@ namespace JWTAuthAPI.Application.CommandQuery.Products.Commands.Validators
             RuleFor(v => v.Id)
                 .NotNull()
                 .NotEmpty();
-
         }
     }
 }

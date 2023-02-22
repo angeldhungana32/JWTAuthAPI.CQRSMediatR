@@ -1,7 +1,7 @@
 ﻿using JWTAuthAPI.API.Extensions;
 using JWTAuthAPI.Core.Configurations;
 using JWTAuthAPI.Core.Entities.Identity;
-using JWTAuthAPI.Core.Helpers;
+using JWTAuthAPI.Core.Constants;
 using JWTAuthAPI.Core.Interfaces;
 using JWTAuthAPI.Core.Services;
 using JWTAuthAPI.Infrastructure.Data;
@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using JWTAuthAPI.Infrastructure.Interceptors;
 
 namespace JWTAuthAPI.Infrastructure
 {
@@ -19,6 +20,8 @@ namespace JWTAuthAPI.Infrastructure
     {
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddScoped<AuditableEntitySaveChangesInterceptor>();
+
             if (configuration.GetValue<bool>(ConfigurationSectionKeyConstants.UseInMemoryDB))
             {
                 services.AddDbContext<ApplicationDbContext>(options => 
@@ -57,6 +60,9 @@ namespace JWTAuthAPI.Infrastructure
 
             services.AddTransient<IIdentityService, IdentityService>();
             services.AddScoped<ITokenService, JwtTokenService>();
+
+            services.AddAuthorization(options =>
+                options.AddPolicy("CanGetAllUsers", policy => policy.RequireRole(Roles.ADMIN)));
 
             return services;
         }

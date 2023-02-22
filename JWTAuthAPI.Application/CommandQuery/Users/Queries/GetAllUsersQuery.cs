@@ -17,10 +17,7 @@ namespace JWTAuthAPI.Application.CommandQuery.Users.Queries
 
         public async Task<List<UserResponse>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
-            IReadOnlyList<ApplicationUser> applicationUsers = await _repositoryActivator
-                .Repository<ApplicationUser>()
-                .ListAllAsync();
-
+            IReadOnlyList<ApplicationUser> applicationUsers = await _repositoryActivator.Repository<ApplicationUser>().ListAllAsync();
             return applicationUsers.ToResponseDTO(); 
         }
     }

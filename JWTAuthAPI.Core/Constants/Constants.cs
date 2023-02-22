@@ -1,4 +1,4 @@
-﻿namespace JWTAuthAPI.Core.Helpers
+﻿namespace JWTAuthAPI.Core.Constants
 {
     public static class RouteConstants
     {
@@ -29,5 +29,11 @@
         public const string DBConnectionString = "DefaultConnection";
         public const string UseInMemoryDB = "UseInMemoryDatabase";
         public const string DBName = "JWTAuthAPIDb";
+    }
+
+    public static class Roles
+    {
+        public const string ADMIN = "Admin";
+        public const string USER = "User";
     }
 }

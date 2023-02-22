@@ -1,4 +1,4 @@
-﻿namespace JWTAuthAPI.Core.Helpers
+﻿namespace JWTAuthAPI.Application.Helpers
 {
     public static class GuidParser
     {

@@ -24,11 +24,13 @@ namespace JWTAuthAPI.Application.CommandQuery.Users.Commands
         public async Task Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
             var entity = await _userManager.FindByIdAsync(request.Id);
-            if(entity == null) { throw new NotFoundException(nameof(ApplicationUser), request.Id); }
+            if(entity == null) 
+                throw new NotFoundException(nameof(ApplicationUser), request.Id);
 
             var result = await _userManager.UpdateAsync(entity.UpdateEntity(request));
 
-            if(!result.Succeeded) { throw new ResourceModificationException(nameof(ApplicationUser), request.Id); }
+            if(!result.Succeeded) 
+                throw new ResourceModificationException(nameof(ApplicationUser), request.Id);
         }
     }
 }

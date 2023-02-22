@@ -2,7 +2,6 @@
 
 namespace JWTAuthAPI.Application.CommandQuery.Authentication.Commands.Validators
 {
-
     public class AuthenticateUserCommandValidator : AbstractValidator<AuthenticateUserCommand>
     {
         public AuthenticateUserCommandValidator()

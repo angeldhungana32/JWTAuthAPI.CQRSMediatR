@@ -26,9 +26,7 @@ namespace JWTAuthAPI.Application.CommandQuery.Products.Commands
         {
             var entity = request.ToEntity();
 
-            entity = await _repositoryActivator
-                .Repository<Product>()
-                .AddAsync(entity);
+            entity = await _repositoryActivator.Repository<Product>().AddAsync(entity);
 
             return entity.ToResponseDTO();
         }

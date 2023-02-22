@@ -18,7 +18,9 @@ namespace JWTAuthAPI.Application.CommandQuery.Users.Commands
         public async Task Handle(DeleteUserCommand request, CancellationToken cancellationToken)
         {
             var entity = await _userManager.FindByIdAsync(request.Id);
-            if (entity == null) { throw new NotFoundException(nameof(ApplicationUser), request.Id); }
+
+            if (entity == null) 
+                throw new NotFoundException(nameof(ApplicationUser), request.Id);
 
             await _userManager.DeleteAsync(entity);
         }

@@ -6,7 +6,8 @@ namespace  JWTAuthAPI.Application.CommandQuery.Authentication
     {
         public static AuthenticateResponse ToResponseDTO(this ApplicationUser? user, string token)
         {
-            if (user == null) throw new ArgumentNullException(nameof(user));
+            if (user == null) 
+                throw new ArgumentNullException(nameof(user));
 
             return new AuthenticateResponse()
             {
