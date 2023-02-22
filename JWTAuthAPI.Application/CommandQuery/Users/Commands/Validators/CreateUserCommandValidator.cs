@@ -1,15 +1,14 @@
 ﻿using FluentValidation;
-using JWTAuthAPI.Core.DTOs.UserAccount;
 
-namespace JWTAuthAPI.API.Validations
+namespace JWTAuthAPI.Application.CommandQuery.Users.Commands.Validators
 {
-    public class UserCreateRequestValidator : AbstractValidator<UserCreateRequest>
+    public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
     {
-        public UserCreateRequestValidator() 
+        public CreateUserCommandValidator()
         {
             RuleFor(v => v.Password)
-               .NotNull()
-               .NotEmpty()
+               .NotNull().WithMessage("Password is required.")
+               .NotEmpty().WithMessage("Password is required.")
                .MinimumLength(8).WithMessage("Your password length must be at least 8.")
                .MaximumLength(20).WithMessage("Your password length must not exceed 20.")
                .Matches(@"[A-Z]+").WithMessage("Your password must contain at least one uppercase letter.")
@@ -18,19 +17,19 @@ namespace JWTAuthAPI.API.Validations
                .Matches(@"[\!\?\*\.]+").WithMessage("Your password must contain at least one (!? *.).");
 
             RuleFor(v => v.Email)
-                .NotNull()
-                .NotEmpty()
+                .NotNull().WithMessage("Email is required.")
+                .NotEmpty().WithMessage("Email is required.")
                 .EmailAddress()
                 .MaximumLength(300);
 
             RuleFor(v => v.FirstName)
-                .NotNull()
-                .NotEmpty()
+                .NotNull().WithMessage("FirstName is required.")
+                .NotEmpty().WithMessage("FirstName is required.")
                 .MaximumLength(30);
 
             RuleFor(v => v.LastName)
-                .NotNull()
-                .NotEmpty()
+                .NotNull().WithMessage("LastName is required.")
+                .NotEmpty().WithMessage("LastName is required.")
                 .MaximumLength(30);
         }
     }

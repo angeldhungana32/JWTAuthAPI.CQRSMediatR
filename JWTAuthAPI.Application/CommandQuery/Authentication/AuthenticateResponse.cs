@@ -1,4 +1,4 @@
-﻿namespace JWTAuthAPI.Core.DTOs.Authentication
+﻿namespace JWTAuthAPI.Application.CommandQuery.Authentication
 {
     public class AuthenticateResponse
     {

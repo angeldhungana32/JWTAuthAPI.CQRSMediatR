@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.5.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.1" />
+    <PackageReference Include="MediatR" Version="12.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.3">
       <PrivateAssets>all</PrivateAssets>
@@ -19,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\JWTAuthAPI.Application\JWTAuthAPI.Application.csproj" />
     <ProjectReference Include="..\JWTAuthAPI.Core\JWTAuthAPI.Core.csproj" />
     <ProjectReference Include="..\JWTAuthAPI.Infrastructure\JWTAuthAPI.Infrastructure.csproj" />
   </ItemGroup>

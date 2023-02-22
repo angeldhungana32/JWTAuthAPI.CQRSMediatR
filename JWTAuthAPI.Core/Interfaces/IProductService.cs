@@ -1,5 +1,4 @@
 ﻿using JWTAuthAPI.Core.Entities;
-using System.Security.Claims;
 
 namespace JWTAuthAPI.Core.Interfaces
 {
@@ -10,6 +9,5 @@ namespace JWTAuthAPI.Core.Interfaces
         Task<Product> AddProductAsync(Product entity);
         Task<bool> UpdateProductAsync(Product entity);
         Task<bool> DeleteProductAsync(Product entity);
-        Task<bool> AuthorizeProductOwnerAsync(ClaimsPrincipal userContext, Product resource);
     }
 }

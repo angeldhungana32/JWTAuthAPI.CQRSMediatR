@@ -6,4 +6,24 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.5.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.1" />
+    <PackageReference Include="MediatR" Version="12.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="7.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JWTAuthAPI.Core\JWTAuthAPI.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="CommandQuery\Authentication\EventHandlers\" />
+    <Folder Include="CommandQuery\Products\Commands\" />
+    <Folder Include="CommandQuery\Products\EventHandlers\" />
+    <Folder Include="CommandQuery\Products\Queries\" />
+    <Folder Include="CommandQuery\Users\EventHandlers\" />
+  </ItemGroup>
+
 </Project>

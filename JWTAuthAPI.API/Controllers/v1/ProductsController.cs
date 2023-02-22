@@ -66,7 +66,6 @@ namespace JWTAuthAPI.API.Controllers.v1
             var product = await _productService.GetProductByIdAsync(id);
 
             if (product == null) { return NotFound(); }
-            if(!await _productService.AuthorizeProductOwnerAsync(User, product)) { return NotFound(); }
 
             var succeeded = await _productService.UpdateProductAsync(product.UpdateEntity(request));
 
@@ -87,7 +86,6 @@ namespace JWTAuthAPI.API.Controllers.v1
             var product = await _productService.GetProductByIdAsync(id);
 
             if (product == null) { return NotFound(); }
-            if (!await _productService.AuthorizeProductOwnerAsync(User, product)) { return NotFound(); }
 
             var succeeded = await _productService.DeleteProductAsync(product);
 

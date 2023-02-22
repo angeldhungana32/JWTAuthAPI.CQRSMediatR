@@ -8,14 +8,11 @@ namespace JWTAuthAPI.Core.Services
 {
     public class ProductService : IProductService
     {
-
         private readonly IRepositoryActivator _repositoryActivator;
-        private readonly IAccountService _accountService;
 
-        public ProductService(IRepositoryActivator repositoryActivator, IAccountService accountService)
+        public ProductService(IRepositoryActivator repositoryActivator)
         {
             _repositoryActivator = repositoryActivator;
-            _accountService = accountService;
         }
 
         public async Task<Product> AddProductAsync(Product product)
@@ -48,12 +45,6 @@ namespace JWTAuthAPI.Core.Services
         {
             return await _repositoryActivator.Repository<Product>()
                 .UpdateAsync(product);
-        }
-
-        public async Task<bool> AuthorizeProductOwnerAsync(ClaimsPrincipal userContext, Product resource)
-        {
-            var user = await _accountService.GetUserByIdAsync(resource.UserId.ToString());
-            return user == null ? false : await _accountService.AuthorizeOwnerAsync(userContext, user);
         }
     }
 }

@@ -3,6 +3,7 @@ using JWTAuthAPI.Core.Configurations;
 using JWTAuthAPI.Core.Entities.Identity;
 using JWTAuthAPI.Core.Helpers;
 using JWTAuthAPI.Core.Interfaces;
+using JWTAuthAPI.Core.Services;
 using JWTAuthAPI.Infrastructure.Data;
 using JWTAuthAPI.Infrastructure.Extensions;
 using JWTAuthAPI.Infrastructure.Repositories;
@@ -52,6 +53,8 @@ namespace JWTAuthAPI.Infrastructure
 
             services.AddSwaggerCustom(configuration);
             services.AddJwtAuthentication(configuration);
+
+            services.AddScoped<ITokenService, JwtTokenService>();
 
             return services;
         }

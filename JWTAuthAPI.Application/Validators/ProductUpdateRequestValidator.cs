@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using JWTAuthAPI.Core.DTOs.Product;
 
-namespace JWTAuthAPI.API.Validations
+namespace JWTAuthAPI.Application.Validators
 {
     public class ProductUpdateRequestValidator : AbstractValidator<ProductUpdateRequest>
     {

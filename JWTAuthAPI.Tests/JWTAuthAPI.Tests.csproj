@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\JWTAuthAPI.Application\JWTAuthAPI.Application.csproj" />
     <ProjectReference Include="..\JWTAuthAPI.Core\JWTAuthAPI.Core.csproj" />
   </ItemGroup>
 

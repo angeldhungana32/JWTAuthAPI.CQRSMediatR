@@ -3,7 +3,7 @@ using JWTAuthAPI.Core.Entities.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
-namespace JWTAuthAPI.API.AuthorizationHandlers
+namespace JWTAuthAPI.Application.Authorization.Handlers
 {
     public class UserIsOwnerAuthorizationHandler : AuthorizationHandler<UserIsOwnerRequirement, ApplicationUser>
     {

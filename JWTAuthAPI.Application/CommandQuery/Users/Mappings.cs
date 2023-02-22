@@ -1,9 +1,9 @@
-﻿using JWTAuthAPI.Core.DTOs.UserAccount;
+﻿using JWTAuthAPI.Application.CommandQuery.Users.Commands;
 using JWTAuthAPI.Core.Entities.Identity;
 
-namespace JWTAuthAPI.Core.Mappings
+namespace JWTAuthAPI.Application.CommandQuery.Users
 {
-    public static class UserMappings
+    public static class Mappings
     {
         public static UserResponse ToResponseDTO(this ApplicationUser user)
         {
@@ -30,28 +30,25 @@ namespace JWTAuthAPI.Core.Mappings
             return usersResponse;
         }
 
-        public static ApplicationUser ToEntity(this UserCreateRequest request)
+        public static ApplicationUser ToEntity(this CreateUserCommand command)
         {
-            if (request == null) throw new ArgumentNullException(nameof(request));
+            if (command == null) throw new ArgumentNullException(nameof(command));
 
             return new ApplicationUser()
             {
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                Email = request.Email,
-                UserName = request.Email
+                FirstName = command.FirstName,
+                LastName = command.LastName,
+                Email = command.Email,
+                UserName = command.Email
             };
         }
 
-        public static ApplicationUser UpdateEntity(this ApplicationUser user,
-            UserUpdateRequest request)
+        public static ApplicationUser UpdateEntity(this ApplicationUser user, UpdateUserCommand request)
         {
-            if (user == null) throw new ArgumentNullException(nameof(user));
-
             if (request != null)
             {
-                user.FirstName = request.FirstName ?? user.FirstName;
-                user.LastName = request.LastName ?? user.LastName;
+                user.FirstName = request.FirstName;
+                user.LastName = request.LastName;
             }
 
             return user;

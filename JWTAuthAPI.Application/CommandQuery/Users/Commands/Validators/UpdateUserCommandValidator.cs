@@ -1,11 +1,10 @@
 ﻿using FluentValidation;
-using JWTAuthAPI.Core.DTOs.UserAccount;
 
-namespace JWTAuthAPI.API.Validations
+namespace JWTAuthAPI.Application.CommandQuery.Users.Commands.Validators
 {
-    public class UserUpdateRequestValidator : AbstractValidator<UserUpdateRequest>
+    public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommand>
     {
-        public UserUpdateRequestValidator() 
+        public UpdateUserCommandValidator()
         {
             RuleFor(v => v.FirstName)
                 .NotNull()

@@ -1,9 +1,8 @@
-﻿using JWTAuthAPI.Core.DTOs.Authentication;
-using JWTAuthAPI.Core.Entities.Identity;
+﻿using JWTAuthAPI.Core.Entities.Identity;
 
-namespace JWTAuthAPI.Core.Mappings
+namespace  JWTAuthAPI.Application.CommandQuery.Authentication
 {
-    public static class AuthenticationMappings
+    public static class Mappings
     {
         public static AuthenticateResponse ToResponseDTO(this ApplicationUser? user, string token)
         {

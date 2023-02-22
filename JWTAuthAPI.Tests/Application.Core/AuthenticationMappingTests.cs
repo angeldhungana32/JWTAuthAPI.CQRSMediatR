@@ -1,4 +1,4 @@
-﻿using JWTAuthAPI.Core.DTOs.Authentication;
+﻿using JWTAuthAPI.Application.CommandQuery.Authentication;
 using JWTAuthAPI.Core.Entities.Identity;
 using JWTAuthAPI.Core.Mappings;
 
@@ -35,7 +35,7 @@ namespace JWTAuthAPI.Tests.Core
         {
             ApplicationUser? nullUser = default;
             Assert.Throws<ArgumentNullException>(() => 
-                AuthenticationMappings.ToResponseDTO(nullUser, "token"));
+                Mappings.ToResponseDTO(nullUser, "token"));
         }
     }
 }

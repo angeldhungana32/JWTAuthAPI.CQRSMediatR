@@ -8,8 +8,6 @@ namespace JWTAuthAPI.Core
     {
         public static IServiceCollection AddCoreServices(this IServiceCollection services)
         {
-            services.AddScoped<ITokenService, JwtTokenService>();
-            services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IProductService, ProductService>();
             return services;
         }

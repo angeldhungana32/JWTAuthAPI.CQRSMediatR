@@ -1,4 +1,5 @@
-﻿using JWTAuthAPI.Core.Entities;
+﻿using JWTAuthAPI.Application.Common.Exceptions;
+using JWTAuthAPI.Core.Entities;
 
 namespace JWTAuthAPI.API.Middlewares
 {
@@ -21,18 +22,40 @@ namespace JWTAuthAPI.API.Middlewares
             catch (Exception ex)
             {
                 _logger.LogError($"Error: {0}", ex.Message);
-                await HandleExceptionAsync(httpContext);
+                await HandleExceptionAsync(ex, httpContext);
             }
         }
 
-        private static async Task HandleExceptionAsync(HttpContext context)
+        private static async Task HandleExceptionAsync(Exception ex, HttpContext context)
         {
+            string message = string.Empty;
+            int statusCode;
+            switch (ex)
+            {
+                case ForbiddenException:
+                    statusCode = StatusCodes.Status403Forbidden;
+                    break;
+                case NotFoundException:
+                    statusCode = StatusCodes.Status404NotFound;
+                    break;
+                case ValidationException:
+                case ResourceCreationException:
+                case ResourceModificationException:
+                    statusCode = StatusCodes.Status400BadRequest;
+                    message = ex.Message;
+                    break;
+                default:
+                    statusCode = StatusCodes.Status500InternalServerError;
+                    message = "Internal Server Error";
+                    break;
+            }
+
             context.Response.ContentType = "application/json";
-            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+            context.Response.StatusCode = statusCode;
             await context.Response.WriteAsync(new ErrorDetails()
             {
-                StatusCode = context.Response.StatusCode,
-                Message = "Internal Server Error"
+                StatusCode = statusCode,
+                Message = message
             }
             .ToString());
         }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JWTAuthAPI.Core.Entities
 {
-    public class Product : BaseEntity
+    public class Product : BaseAuditableEntity
     {
         public string? Name { get; set; }
         public int Quantity { get; set; }
