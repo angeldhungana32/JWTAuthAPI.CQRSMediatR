@@ -7,6 +7,7 @@ using JWTAuthAPI.Core.Services;
 using JWTAuthAPI.Infrastructure.Data;
 using JWTAuthAPI.Infrastructure.Extensions;
 using JWTAuthAPI.Infrastructure.Repositories;
+using JWTAuthAPI.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -54,6 +55,7 @@ namespace JWTAuthAPI.Infrastructure
             services.AddSwaggerCustom(configuration);
             services.AddJwtAuthentication(configuration);
 
+            services.AddTransient<IIdentityService, IdentityService>();
             services.AddScoped<ITokenService, JwtTokenService>();
 
             return services;

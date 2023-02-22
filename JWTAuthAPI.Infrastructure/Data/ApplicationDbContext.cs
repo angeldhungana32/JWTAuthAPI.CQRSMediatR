@@ -1,5 +1,6 @@
 ﻿using JWTAuthAPI.Core.Entities;
 using JWTAuthAPI.Core.Entities.Identity;
+using JWTAuthAPI.Infrastructure.Interceptors;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,7 +8,13 @@ namespace JWTAuthAPI.Infrastructure.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+        private readonly AuditableEntitySaveChangesInterceptor _auditableEntitySaveChangesInterceptor;
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, 
+            AuditableEntitySaveChangesInterceptor auditableEntitySaveChangesInterceptor) : base(options) 
+        { 
+            _auditableEntitySaveChangesInterceptor = auditableEntitySaveChangesInterceptor;
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -16,6 +23,11 @@ namespace JWTAuthAPI.Infrastructure.Data
             modelBuilder.Entity<ApplicationUser>()
                .HasIndex(u => u.Email)
                .IsUnique();
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.AddInterceptors(_auditableEntitySaveChangesInterceptor);
         }
 
         public DbSet<Product> Products { get; set; }

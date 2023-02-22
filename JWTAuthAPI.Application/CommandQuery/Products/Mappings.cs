@@ -1,12 +1,12 @@
-﻿using JWTAuthAPI.Core.DTOs.Product;
+﻿using JWTAuthAPI.Application.CommandQuery.Products.Commands;
+using JWTAuthAPI.Core.Entities;
 using JWTAuthAPI.Core.Helpers;
-using System.Linq;
 
-namespace JWTAuthAPI.Core.Mappings
+namespace JWTAuthAPI.Application.CommandQuery.Products
 {
-    public static class ProductMappings
+    public static class Mappings
     {
-        public static ProductResponse ToResponseDTO(this Entities.Product product)
+        public static ProductResponse ToResponseDTO(this Product product)
         {
             if (product == null) throw new ArgumentNullException(nameof(product));
 
@@ -21,7 +21,7 @@ namespace JWTAuthAPI.Core.Mappings
             };
         }
 
-        public static List<ProductResponse> ToResponseDTO(this IReadOnlyCollection<Entities.Product> products)
+        public static List<ProductResponse> ToResponseDTO(this IReadOnlyList<Product> products)
         {
             List<ProductResponse> productsResponse = new();
 
@@ -33,11 +33,11 @@ namespace JWTAuthAPI.Core.Mappings
             return productsResponse;
         }
 
-        public static Entities.Product ToEntity(this ProductCreateRequest request)
+        public static Product ToEntity(this CreateProductCommand request)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            return new Entities.Product()
+            return new Product()
             {
                 Description = request.Description,
                 Name = request.Description,
@@ -47,17 +47,14 @@ namespace JWTAuthAPI.Core.Mappings
             };
         }
 
-        public static Entities.Product UpdateEntity(this Entities.Product product,
-            ProductUpdateRequest request)
+        public static Product UpdateEntity(this Product product, UpdateProductCommand request)
         {
-            if (product == null) throw new ArgumentNullException(nameof(product));
-
             if (request != null)
             {
-                product.Price = request.Price ?? product.Price;
-                product.Description = request.Description ?? product.Description;
-                product.Quantity = request.Quantity ?? product.Quantity;
-                product.Name = request.Name ?? product.Name;
+                product.Price = request.Price;
+                product.Description = request.Description;
+                product.Quantity = request.Quantity;
+                product.Name = request.Name;
             }
 
             return product;

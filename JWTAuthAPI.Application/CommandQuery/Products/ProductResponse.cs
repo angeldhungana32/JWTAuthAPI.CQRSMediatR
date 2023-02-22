@@ -1,4 +1,4 @@
-﻿namespace JWTAuthAPI.Core.DTOs.Product
+﻿namespace JWTAuthAPI.Application.CommandQuery.Products
 {
     public class ProductResponse
     {

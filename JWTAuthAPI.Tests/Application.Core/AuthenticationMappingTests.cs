@@ -1,6 +1,5 @@
 ﻿using JWTAuthAPI.Application.CommandQuery.Authentication;
 using JWTAuthAPI.Core.Entities.Identity;
-using JWTAuthAPI.Core.Mappings;
 
 namespace JWTAuthAPI.Tests.Core
 {

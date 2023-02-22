@@ -1,24 +1,16 @@
+using JWTAuthAPI.API;
 using JWTAuthAPI.API.Middlewares;
 using JWTAuthAPI.Application;
-using JWTAuthAPI.Core;
 using JWTAuthAPI.Infrastructure;
 using JWTAuthAPI.Infrastructure.Data;
 using JWTAuthAPI.Infrastructure.Extensions;
-using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole().AddDebug();
 
-builder.Services.AddControllers()
-               .AddJsonOptions(options =>
-                   options.JsonSerializerOptions
-                   .Converters.Add(new JsonStringEnumConverter()));
-
-builder.Services.AddEndpointsApiExplorer();
-
-
+builder.Services.AddAPIServices();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
