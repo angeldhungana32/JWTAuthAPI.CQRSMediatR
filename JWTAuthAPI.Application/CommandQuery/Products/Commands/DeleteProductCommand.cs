@@ -1,4 +1,5 @@
-﻿using JWTAuthAPI.Application.Common.Exceptions;
+﻿using JWTAuthAPI.Application.Authorization.Attributes;
+using JWTAuthAPI.Application.Common.Exceptions;
 using JWTAuthAPI.Application.Helpers;
 using JWTAuthAPI.Core.Entities;
 using JWTAuthAPI.Core.Entities.Identity;
@@ -7,6 +8,7 @@ using MediatR;
 
 namespace JWTAuthAPI.Application.CommandQuery.Products.Commands
 {
+    [AuthorizeCustom(Policy = "UserIsOwner")]
     public record DeleteProductCommand(string Id) : IRequest;
 
     public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand>

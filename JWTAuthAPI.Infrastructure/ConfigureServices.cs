@@ -56,11 +56,11 @@ namespace JWTAuthAPI.Infrastructure
 
             services.AddJwtAuthentication(configuration);
 
-            services.AddTransient<IIdentityService, IdentityService>();
+            services.AddScoped<IIdentityService, IdentityService>();
             services.AddScoped<ITokenService, JwtTokenService>();
+            
 
-            services.AddAuthorization(options =>
-                options.AddPolicy("CanGetAllUsers", policy => policy.RequireRole(Roles.ADMIN)));
+
 
             return services;
         }

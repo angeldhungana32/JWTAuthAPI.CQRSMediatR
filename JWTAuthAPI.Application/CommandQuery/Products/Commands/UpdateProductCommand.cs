@@ -3,9 +3,11 @@ using JWTAuthAPI.Core.Entities;
 using JWTAuthAPI.Application.Helpers;
 using JWTAuthAPI.Core.Interfaces;
 using MediatR;
+using JWTAuthAPI.Application.Authorization.Attributes;
 
 namespace JWTAuthAPI.Application.CommandQuery.Products.Commands
 {
+    [AuthorizeCustom(Policy = "UserIsOwner")]
     public record UpdateProductCommand : IRequest
     {
         public string? Id { get; set; }

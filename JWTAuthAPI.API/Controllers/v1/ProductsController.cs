@@ -1,4 +1,5 @@
-﻿using JWTAuthAPI.Application.CommandQuery.Products;
+﻿using JWTAuthAPI.Application.Authorization.Attributes;
+using JWTAuthAPI.Application.CommandQuery.Products;
 using JWTAuthAPI.Application.CommandQuery.Products.Commands;
 using JWTAuthAPI.Application.CommandQuery.Products.Queries;
 using JWTAuthAPI.Core.Constants;
@@ -57,6 +58,7 @@ namespace JWTAuthAPI.API.Controllers.v1
             return NoContent();
         }
 
+        // GET api/v1/Products/Users/{id}
         [HttpGet(RouteConstants.GetAllProductsByUserId)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

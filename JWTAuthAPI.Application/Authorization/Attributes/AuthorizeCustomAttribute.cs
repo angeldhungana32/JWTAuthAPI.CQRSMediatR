@@ -1,9 +1,9 @@
 ﻿namespace JWTAuthAPI.Application.Authorization.Attributes
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
-    public class AuthorizeAttribute : Attribute
+    public class AuthorizeCustomAttribute : Attribute
     {
-        public AuthorizeAttribute() { }
+        public AuthorizeCustomAttribute() { }
 
         public string Roles { get; set; } = string.Empty;
 

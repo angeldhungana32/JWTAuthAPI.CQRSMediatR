@@ -1,26 +1,26 @@
 ﻿using JWTAuthAPI.Core.AuthorizationRequirement;
 using JWTAuthAPI.Core.Entities.Identity;
+using JWTAuthAPI.Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 
 namespace JWTAuthAPI.Application.Authorization.Handlers
 {
     public class UserIsOwnerAuthorizationHandler : AuthorizationHandler<UserIsOwnerRequirement, ApplicationUser>
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ICurrentUserService _currentUserService;
 
-        public UserIsOwnerAuthorizationHandler(UserManager<ApplicationUser> userManager)
+        public UserIsOwnerAuthorizationHandler(ICurrentUserService currentUserService)
         {
-            _userManager = userManager;
+            _currentUserService = currentUserService;
         }
 
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
             UserIsOwnerRequirement requirement,
             ApplicationUser resource)
         {
-            if (context.User == null || resource == null) { return Task.CompletedTask; }
+            if (_currentUserService.UserId == null || resource == null) { return Task.CompletedTask; }
 
-            if (resource.Id.ToString() == _userManager.GetUserId(context.User))
+            if (resource.Id.ToString() == _currentUserService.UserId)
             {
                 context.Succeed(requirement);
             }

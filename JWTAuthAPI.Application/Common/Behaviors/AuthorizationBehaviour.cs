@@ -2,6 +2,7 @@
 using JWTAuthAPI.Application.Common.Exceptions;
 using JWTAuthAPI.Core.Interfaces;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using System.Reflection;
 
 namespace JWTAuthAPI.Application.Common.Behaviors
@@ -19,7 +20,7 @@ namespace JWTAuthAPI.Application.Common.Behaviors
 
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
-            var authorizeAttributes = request.GetType().GetCustomAttributes<AuthorizeAttribute>();
+            var authorizeAttributes = request.GetType().GetCustomAttributes<AuthorizeCustomAttribute>();
 
             if (authorizeAttributes.Any())
             {

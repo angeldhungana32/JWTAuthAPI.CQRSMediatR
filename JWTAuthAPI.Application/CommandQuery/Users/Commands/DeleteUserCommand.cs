@@ -1,10 +1,12 @@
-﻿using JWTAuthAPI.Application.Common.Exceptions;
+﻿using JWTAuthAPI.Application.Authorization.Attributes;
+using JWTAuthAPI.Application.Common.Exceptions;
 using JWTAuthAPI.Core.Entities.Identity;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
 namespace JWTAuthAPI.Application.CommandQuery.Users.Commands
 {
+    [AuthorizeCustom(Policy = "UserIsOwner")]
     public record DeleteUserCommand(string Id) : IRequest;
 
     public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand>

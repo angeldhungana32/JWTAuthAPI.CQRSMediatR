@@ -1,4 +1,5 @@
-﻿using JWTAuthAPI.Application.CommandQuery.Authentication;
+﻿using JWTAuthAPI.Application.Authorization.Attributes;
+using JWTAuthAPI.Application.CommandQuery.Authentication;
 using JWTAuthAPI.Application.CommandQuery.Authentication.Commands;
 using JWTAuthAPI.Application.CommandQuery.Users;
 using JWTAuthAPI.Application.CommandQuery.Users.Commands;
@@ -43,7 +44,6 @@ namespace JWTAuthAPI.API.Controllers.v1
         }
 
         // GET api/v1/Accounts/Users/
-        [Authorize(Roles = Roles.ADMIN)]
         [HttpGet(RouteConstants.GetAllUsers)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
