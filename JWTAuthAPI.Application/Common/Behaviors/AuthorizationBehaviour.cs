@@ -23,13 +23,11 @@ namespace JWTAuthAPI.Application.Common.Behaviors
 
             if (authorizeAttributes.Any())
             {
-                // Must be authenticated user
                 if (_currentUserService.UserId == null)
                 {
                     throw new UnauthorizedAccessException();
                 }
 
-                // Role-based authorization
                 var authorizeAttributesWithRoles = authorizeAttributes.Where(a => !string.IsNullOrWhiteSpace(a.Roles));
 
                 if (authorizeAttributesWithRoles.Any())
@@ -55,7 +53,6 @@ namespace JWTAuthAPI.Application.Common.Behaviors
                     }
                 }
 
-                // Policy-based authorization
                 var authorizeAttributesWithPolicies = authorizeAttributes.Where(a => !string.IsNullOrWhiteSpace(a.Policy));
                 if (authorizeAttributesWithPolicies.Any())
                 {
