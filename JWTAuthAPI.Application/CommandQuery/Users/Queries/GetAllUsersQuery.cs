@@ -7,7 +7,7 @@ using MediatR;
 namespace JWTAuthAPI.Application.CommandQuery.Users.Queries
 {
     [AuthorizeCustom(Roles = Roles.ADMIN)]
-    [AuthorizeCustom(Policy = "UserIsAdmin")]
+    [AuthorizeCustom(Policy = AuthorizationPolicies.UserIsAdminPolicy)]
     public record GetAllUsersQuery() : IRequest<List<UserResponse>>;
 
     public class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, List<UserResponse>>

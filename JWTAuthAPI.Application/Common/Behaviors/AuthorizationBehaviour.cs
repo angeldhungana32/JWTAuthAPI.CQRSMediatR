@@ -2,7 +2,6 @@
 using JWTAuthAPI.Application.Common.Exceptions;
 using JWTAuthAPI.Core.Interfaces;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using System.Reflection;
 
 namespace JWTAuthAPI.Application.Common.Behaviors

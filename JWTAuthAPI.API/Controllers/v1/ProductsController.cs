@@ -1,5 +1,4 @@
-﻿using JWTAuthAPI.Application.Authorization.Attributes;
-using JWTAuthAPI.Application.CommandQuery.Products;
+﻿using JWTAuthAPI.Application.CommandQuery.Products;
 using JWTAuthAPI.Application.CommandQuery.Products.Commands;
 using JWTAuthAPI.Application.CommandQuery.Products.Queries;
 using JWTAuthAPI.Core.Constants;

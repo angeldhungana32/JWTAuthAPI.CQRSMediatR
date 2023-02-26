@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace JWTAuthAPI.Core.AuthorizationRequirement
+namespace JWTAuthAPI.Application.Authorization.Requirements
 {
     public class UserIsOwnerRequirement : IAuthorizationRequirement { }
 }

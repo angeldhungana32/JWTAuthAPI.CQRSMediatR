@@ -36,4 +36,12 @@
         public const string ADMIN = "Admin";
         public const string USER = "User";
     }
+
+    public static class AuthorizationPolicies
+    {
+        public const string UserIsAdminPolicy = "UserIsAdmin";
+        public const string UserIsOwnerPolicy = "UserIsOwner";
+        public const string UserIsProductOwnerPolicy = "UserIsProductOwner";
+
+    }
 }

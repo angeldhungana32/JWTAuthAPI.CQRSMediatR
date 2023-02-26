@@ -11,9 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole().AddDebug();
 
-builder.Services.AddAPIServices(builder.Configuration);
-builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddApplicationServices();
+builder.Services.AddAPIServices(builder.Configuration);
+
+
 
 var app = builder.Build();
 

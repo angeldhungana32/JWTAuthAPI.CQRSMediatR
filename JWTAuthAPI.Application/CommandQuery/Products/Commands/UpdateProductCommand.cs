@@ -3,11 +3,10 @@ using JWTAuthAPI.Core.Entities;
 using JWTAuthAPI.Application.Helpers;
 using JWTAuthAPI.Core.Interfaces;
 using MediatR;
-using JWTAuthAPI.Application.Authorization.Attributes;
+using JWTAuthAPI.Application.Authorization.Policies;
 
 namespace JWTAuthAPI.Application.CommandQuery.Products.Commands
 {
-    [AuthorizeCustom(Policy = "UserIsOwner")]
     public record UpdateProductCommand : IRequest
     {
         public string? Id { get; set; }
@@ -20,10 +19,12 @@ namespace JWTAuthAPI.Application.CommandQuery.Products.Commands
     public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand>
     {
         private readonly IRepositoryActivator _repositoryActivator;
+        private readonly IResourceAuthorizationService _resourceAuthorizationService;
 
-        public UpdateProductCommandHandler(IRepositoryActivator repositoryActivator)
+        public UpdateProductCommandHandler(IRepositoryActivator repositoryActivator, IResourceAuthorizationService resourceAuthorizationService)
         {
             _repositoryActivator = repositoryActivator;
+            _resourceAuthorizationService = resourceAuthorizationService;
         }
 
         public async Task Handle(UpdateProductCommand request, CancellationToken cancellationToken)
@@ -34,6 +35,11 @@ namespace JWTAuthAPI.Application.CommandQuery.Products.Commands
 
             if(entity == null) 
                 throw new NotFoundException(nameof(entity), request.Id);
+
+            var authorized = await _resourceAuthorizationService.AuthorizeAsync(entity,
+                ResourcePolicies.UpdateResource.Requirements);
+
+            if (!authorized) throw new ForbiddenAccessException();
 
             await _repositoryActivator.Repository<Product>().UpdateAsync(entity);
         }

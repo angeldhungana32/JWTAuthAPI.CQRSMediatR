@@ -1,11 +1,10 @@
 ﻿using JWTAuthAPI.Core.Entities.Identity;
 using JWTAuthAPI.Core.Constants;
 using JWTAuthAPI.Core.Interfaces;
-using JWTAuthAPI.Core.Services;
+using JWTAuthAPI.Infrastructure.Services;
 using JWTAuthAPI.Infrastructure.Data;
 using JWTAuthAPI.Infrastructure.Extensions;
 using JWTAuthAPI.Infrastructure.Repositories;
-using JWTAuthAPI.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -54,13 +53,16 @@ namespace JWTAuthAPI.Infrastructure
             services.AddTransient<ApplicationDbInitializer>();
             services.AddTransient<IRepositoryActivator, RepositoryActivator>();
 
+            services.AddScoped<ITokenService, JwtTokenService>();
+
             services.AddJwtAuthentication(configuration);
 
-            services.AddScoped<IIdentityService, IdentityService>();
-            services.AddScoped<ITokenService, JwtTokenService>();
-            
+            services.AddAuthorization(options =>
+               options.AddPolicy(AuthorizationPolicies.UserIsAdminPolicy,
+                   policy => policy.RequireRole(Roles.ADMIN)));
 
-
+            services.AddTransient<IIdentityService, IdentityService>();
+            services.AddTransient<IResourceAuthorizationService, ResourceAuthorizationService>();
 
             return services;
         }

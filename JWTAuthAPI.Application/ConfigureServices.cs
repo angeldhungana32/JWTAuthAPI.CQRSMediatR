@@ -1,34 +1,26 @@
 ﻿using FluentValidation;
-using Microsoft.Extensions.DependencyInjection;
-using JWTAuthAPI.Application.Common.Behaviors;
 using MediatR;
+using JWTAuthAPI.Application.Common.Behaviors;
 using System.Reflection;
-using JWTAuthAPI.Core.Constants;
-using JWTAuthAPI.Core.AuthorizationRequirement;
-using JWTAuthAPI.Application.Authorization.Handlers;
+using JWTAuthAPI.Infrastructure.Authorization;
 using Microsoft.AspNetCore.Authorization;
 
-namespace JWTAuthAPI.Application
+namespace Microsoft.Extensions.DependencyInjection
 {
     public static class ConfigureServices
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddMediatR(cfg => 
+            {
+                cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+                cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehaviour<,>));
+                cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+            });
 
             services.AddScoped<IAuthorizationHandler, UserIsOwnerAuthorizationHandler>();
-
-            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehaviour<,>));
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
-
-            services.AddAuthorizationCore(options =>
-               options.AddPolicy("UserIsAdmin",
-                   policy => policy.RequireRole(Roles.ADMIN)));
-
-            services.AddAuthorizationCore(options =>
-                options.AddPolicy("UserIsOwner", policy =>
-                    policy.Requirements.Add(new UserIsOwnerRequirement())));
+            services.AddScoped<IAuthorizationHandler, UserIsProductOwnerAuthorizationHandler>();
 
             return services;
         }

@@ -55,8 +55,6 @@ namespace JWTAuthAPI.Infrastructure.Extensions
                 };
             });
 
-            services.AddAuthorization();
-
             return services;
         }
 
