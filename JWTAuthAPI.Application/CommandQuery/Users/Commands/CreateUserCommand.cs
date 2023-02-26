@@ -28,13 +28,11 @@ namespace JWTAuthAPI.Application.CommandQuery.Users.Commands
             var entity = request.ToEntity();
             var result = await _userManager.CreateAsync(entity, request.Password); 
             
-            if(!result.Succeeded) 
-                throw new ResourceCreationException(nameof(ApplicationUser));
+            if(!result.Succeeded) throw new ResourceCreationException(nameof(ApplicationUser));
 
             result = await _userManager.AddToRoleAsync(entity, Roles.USER);
 
-            if (!result.Succeeded) 
-                throw new ResourceCreationException(nameof(ApplicationUser));
+            if (!result.Succeeded) throw new ResourceCreationException(nameof(ApplicationUser));
 
             return entity.ToResponseDTO();
         }

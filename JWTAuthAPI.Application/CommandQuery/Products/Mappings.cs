@@ -25,8 +25,7 @@ namespace JWTAuthAPI.Application.CommandQuery.Products
         {
             List<ProductResponse> productsResponse = new();
 
-            if (products != null)
-                productsResponse.AddRange(products.Select(product => product.ToResponseDTO()));
+            if (products != null) productsResponse.AddRange(products.Select(product => product.ToResponseDTO()));
 
             return productsResponse;
         }

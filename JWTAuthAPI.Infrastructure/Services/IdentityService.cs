@@ -10,24 +10,21 @@ namespace JWTAuthAPI.Infrastructure.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserClaimsPrincipalFactory<ApplicationUser> _userClaimsPrincipalFactory;
         private readonly IAuthorizationService _authorizationService;
-        private readonly ICurrentUserService _currentUserService;
 
         public IdentityService(UserManager<ApplicationUser> userManager,
             IUserClaimsPrincipalFactory<ApplicationUser> userClaimsPrincipalFactory,
-            IAuthorizationService authorizationService,
-            ICurrentUserService currentUserService)
+            IAuthorizationService authorizationService)
         {
             _userManager = userManager;
             _userClaimsPrincipalFactory = userClaimsPrincipalFactory;
             _authorizationService = authorizationService;
-            _currentUserService = currentUserService;
         }
 
         public async Task<bool> AuthorizeAsync(string userId, string policyName)
         {
             var user = await _userManager.FindByIdAsync(userId);
 
-            if (user == null) { return false; }
+            if (user == null) return false;
 
             var principal = await _userClaimsPrincipalFactory.CreateAsync(user);
 

@@ -28,11 +28,11 @@ namespace JWTAuthAPI.Application.CommandQuery.Authentication.Commands
         {
             var entity = await _userManager.FindByEmailAsync(request.Email);
 
-            if(entity == null) { ThrowValidationError(); }
+            if(entity == null) ThrowValidationError();
 
             var isValidUser = await _userManager.CheckPasswordAsync(entity, request.Password);
 
-            if(!isValidUser) { ThrowValidationError(); }
+            if(!isValidUser) ThrowValidationError();
 
             var roles = await _userManager.GetRolesAsync(entity);
             string token = _tokenService.GenerateAuthenticationToken(entity, (List<string>)roles);

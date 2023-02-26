@@ -33,16 +33,13 @@ namespace JWTAuthAPI.Application.CommandQuery.Products.Commands
 
             var entity = await _repositoryActivator.Repository<Product>().GetByIdAsync(id);
 
-            if(entity == null) 
-                throw new NotFoundException(nameof(entity), request.Id);
+            if(entity == null) throw new NotFoundException(nameof(entity), request.Id);
 
-            var authorized = await _resourceAuthorizationService.AuthorizeAsync(entity,
-                ResourcePolicies.UpdateResource.Requirements);
+            var authorized = await _resourceAuthorizationService.AuthorizeAsync(entity, ResourcePolicies.UpdateResource.Requirements);
 
             if (!authorized) throw new ForbiddenAccessException();
 
             await _repositoryActivator.Repository<Product>().UpdateAsync(entity);
         }
-
     }
 }

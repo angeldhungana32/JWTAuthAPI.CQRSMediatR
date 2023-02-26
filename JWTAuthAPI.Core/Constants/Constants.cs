@@ -42,6 +42,5 @@
         public const string UserIsAdminPolicy = "UserIsAdmin";
         public const string UserIsOwnerPolicy = "UserIsOwner";
         public const string UserIsProductOwnerPolicy = "UserIsProductOwner";
-
     }
 }

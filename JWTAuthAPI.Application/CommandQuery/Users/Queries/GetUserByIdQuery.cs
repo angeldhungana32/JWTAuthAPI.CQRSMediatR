@@ -20,8 +20,7 @@ namespace JWTAuthAPI.Application.CommandQuery.Users.Queries
         {
             var entity = await _userManager.FindByIdAsync(request.Id);
 
-            if (entity == null) 
-                throw new NotFoundException(nameof(ApplicationUser), request.Id);
+            if (entity == null) throw new NotFoundException(nameof(ApplicationUser), request.Id);
 
             return entity.ToResponseDTO();
         }

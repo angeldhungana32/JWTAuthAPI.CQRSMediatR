@@ -7,8 +7,7 @@ namespace JWTAuthAPI.Application.CommandQuery.Users
     {
         public static UserResponse ToResponseDTO(this ApplicationUser user)
         {
-            if (user == null) 
-                throw new ArgumentNullException(nameof(user));
+            if (user == null) throw new ArgumentNullException(nameof(user));
 
             return new UserResponse()
             {
@@ -23,16 +22,14 @@ namespace JWTAuthAPI.Application.CommandQuery.Users
         {
             List<UserResponse> usersResponse = new();
 
-            if (users != null)
-                usersResponse.AddRange(users.Select(user => user.ToResponseDTO()));
+            if (users != null) usersResponse.AddRange(users.Select(user => user.ToResponseDTO()));
 
             return usersResponse;
         }
 
         public static ApplicationUser ToEntity(this CreateUserCommand command)
         {
-            if (command == null) 
-                throw new ArgumentNullException(nameof(command));
+            if (command == null) throw new ArgumentNullException(nameof(command));
 
             return new ApplicationUser()
             {

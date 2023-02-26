@@ -57,8 +57,7 @@ namespace JWTAuthAPI.Infrastructure
 
             services.AddJwtAuthentication(configuration);
 
-            services.AddAuthorization(options =>
-               options.AddPolicy(AuthorizationPolicies.UserIsAdminPolicy,
+            services.AddAuthorization(options => options.AddPolicy(AuthorizationPolicies.UserIsAdminPolicy,
                    policy => policy.RequireRole(Roles.ADMIN)));
 
             services.AddTransient<IIdentityService, IdentityService>();

@@ -20,9 +20,7 @@ namespace JWTAuthAPI.Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<ApplicationUser>()
-               .HasIndex(u => u.Email)
-               .IsUnique();
+            modelBuilder.Entity<ApplicationUser>().HasIndex(u => u.Email).IsUnique();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

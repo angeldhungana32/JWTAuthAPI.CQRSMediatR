@@ -19,8 +19,7 @@ namespace JWTAuthAPI.Application.CommandQuery.Users.Commands
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IResourceAuthorizationService _authorizationService;
 
-        public UpdateUserCommandHandler(UserManager<ApplicationUser> userManager,
-            IResourceAuthorizationService authorizationService)
+        public UpdateUserCommandHandler(UserManager<ApplicationUser> userManager, IResourceAuthorizationService authorizationService)
         {
             _userManager = userManager;
             _authorizationService = authorizationService;
@@ -30,18 +29,15 @@ namespace JWTAuthAPI.Application.CommandQuery.Users.Commands
         {
             var entity = await _userManager.FindByIdAsync(request.Id);
 
-            if(entity == null) 
-                throw new NotFoundException(nameof(ApplicationUser), request.Id);
+            if(entity == null) throw new NotFoundException(nameof(ApplicationUser), request.Id);
 
-            var authorized = await _authorizationService.AuthorizeAsync(entity,
-               ResourcePolicies.UpdateResource.Requirements);
+            var authorized = await _authorizationService.AuthorizeAsync(entity, ResourcePolicies.UpdateResource.Requirements);
 
             if (!authorized) throw new ForbiddenAccessException();
 
             var result = await _userManager.UpdateAsync(entity.UpdateEntity(request));
 
-            if(!result.Succeeded) 
-                throw new ResourceModificationException(nameof(ApplicationUser), request.Id);
+            if(!result.Succeeded) throw new ResourceModificationException(nameof(ApplicationUser), request.Id);
 
             return result.Succeeded;
         }

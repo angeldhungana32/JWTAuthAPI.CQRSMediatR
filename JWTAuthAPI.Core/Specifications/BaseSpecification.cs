@@ -30,6 +30,5 @@ namespace JWTAuthAPI.Core.Specifications
         {
             OrderBy = orderByExpression;
         }
-
     }
 }

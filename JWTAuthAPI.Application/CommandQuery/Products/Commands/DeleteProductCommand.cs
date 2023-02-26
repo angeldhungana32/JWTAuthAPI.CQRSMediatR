@@ -26,11 +26,9 @@ namespace JWTAuthAPI.Application.CommandQuery.Products.Commands
 
             var entity = await _repositoryActivator.Repository<Product>().GetByIdAsync(id);
 
-            if (entity == null)
-                throw new NotFoundException(nameof(ApplicationUser), request.Id);
+            if (entity == null) throw new NotFoundException(nameof(ApplicationUser), request.Id);
 
-            var authorized = await _resourceAuthorizationService.AuthorizeAsync(entity,
-                ResourcePolicies.DeleteResource.Requirements);
+            var authorized = await _resourceAuthorizationService.AuthorizeAsync(entity, ResourcePolicies.DeleteResource.Requirements);
 
             if (!authorized) throw new ForbiddenAccessException();
 

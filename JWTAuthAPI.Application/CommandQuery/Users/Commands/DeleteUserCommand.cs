@@ -14,8 +14,7 @@ namespace JWTAuthAPI.Application.CommandQuery.Users.Commands
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IResourceAuthorizationService _authorizationService;
 
-        public DeleteUserCommandHandler(UserManager<ApplicationUser> userManager,
-            IResourceAuthorizationService authorizationService) 
+        public DeleteUserCommandHandler(UserManager<ApplicationUser> userManager, IResourceAuthorizationService authorizationService) 
         {
             _userManager = userManager;
             _authorizationService = authorizationService;
@@ -27,8 +26,7 @@ namespace JWTAuthAPI.Application.CommandQuery.Users.Commands
 
             if (entity == null) throw new NotFoundException(nameof(ApplicationUser), request.Id);
 
-            var authorized = await _authorizationService.AuthorizeAsync(entity,
-                ResourcePolicies.DeleteResource.Requirements);
+            var authorized = await _authorizationService.AuthorizeAsync(entity, ResourcePolicies.DeleteResource.Requirements);
 
             if (!authorized) throw new ForbiddenAccessException();
 

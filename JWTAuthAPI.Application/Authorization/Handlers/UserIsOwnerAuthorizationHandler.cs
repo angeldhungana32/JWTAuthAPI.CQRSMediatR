@@ -5,7 +5,7 @@ using JWTAuthAPI.Core.Entities.Identity;
 using JWTAuthAPI.Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 
-namespace JWTAuthAPI.Infrastructure.Authorization
+namespace JWTAuthAPI.Application.Authorization
 {
     public class UserIsOwnerAuthorizationHandler : AuthorizationHandler<UserIsOwnerRequirement, ApplicationUser>
     {

@@ -1,4 +1,5 @@
 ﻿using JWTAuthAPI.API.Configurations;
+using JWTAuthAPI.Core.Constants;
 using Microsoft.OpenApi.Models;
 
 namespace JWTAuthAPI.API.Extensions
@@ -7,8 +8,8 @@ namespace JWTAuthAPI.API.Extensions
     {
         public static IServiceCollection AddSwaggerCustom(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<SwaggerConfiguration>(configuration.GetSection("Swagger"));
-            var swaggerConfiguration = configuration.GetSection("Swagger").Get<SwaggerConfiguration>();
+            services.Configure<SwaggerConfiguration>(configuration.GetSection(ConfigurationSectionKeyConstants.Swagger));
+            var swaggerConfiguration = configuration.GetSection(ConfigurationSectionKeyConstants.Swagger).Get<SwaggerConfiguration>();
 
             services.AddSwaggerGen(options =>
             {

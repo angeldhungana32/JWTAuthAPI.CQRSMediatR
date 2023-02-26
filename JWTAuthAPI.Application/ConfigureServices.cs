@@ -2,8 +2,8 @@
 using MediatR;
 using JWTAuthAPI.Application.Common.Behaviors;
 using System.Reflection;
-using JWTAuthAPI.Infrastructure.Authorization;
 using Microsoft.AspNetCore.Authorization;
+using JWTAuthAPI.Application.Authorization;
 
 namespace Microsoft.Extensions.DependencyInjection
 {

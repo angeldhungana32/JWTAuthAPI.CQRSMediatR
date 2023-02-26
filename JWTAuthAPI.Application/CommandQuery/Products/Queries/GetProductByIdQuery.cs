@@ -24,8 +24,7 @@ namespace JWTAuthAPI.Application.CommandQuery.Products.Queries
 
             var entity = await _repositoryActivator.Repository<Product>().GetByIdAsync(id);
 
-            if (entity == null) 
-                throw new NotFoundException(nameof(ApplicationUser), request.Id);
+            if (entity == null) throw new NotFoundException(nameof(ApplicationUser), request.Id);
 
             return entity.ToResponseDTO();
         }
